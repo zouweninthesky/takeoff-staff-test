@@ -80,6 +80,7 @@ const CreateContact: FC = () => {
         />
       </div>
       <button
+        className="button"
         type="button"
         disabled={!firstName.inputValid || !phone.inputValid}
         onClick={() => {

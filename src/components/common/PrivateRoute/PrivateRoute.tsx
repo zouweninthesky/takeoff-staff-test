@@ -3,9 +3,9 @@ import { Navigate } from "react-router";
 
 // import Auth from "../../../store/auth";
 
-const auth = false;
+const auth = true;
 
-const PrivateRoute:FC = ({ children }) => {
+const PrivateRoute: FC = ({ children }) => {
   return auth ? <>{children}</> : <Navigate to="/login" />;
 };
 

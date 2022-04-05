@@ -1,11 +1,28 @@
-import React, {FC} from "react";
+import React, { FC, useEffect } from "react";
+import { useAppSelector, useAppDispatch } from "../../app/hooks/redux";
 
-const Contacts:FC = () => {
-	return (
-		<div>
-			We are the contacts
-		</div>
-	)
-}
+import ContactsList from "./ContactsList/ContactsList";
+import CreateContact from "./CreateContact/CreateContact";
+
+import { contactsLoaded } from "../../features/contacts/contacts-slice";
+import data from "../../utils/data";
+
+const Contacts: FC = () => {
+  const { contacts } = useAppSelector((state) => state.contacts);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    console.log("here i am");
+    if (contacts.length === 0) dispatch(contactsLoaded(data));
+  }, []);
+
+  return (
+    <div>
+      We are the contacts
+      {contacts && <ContactsList />}
+      <CreateContact />
+    </div>
+  );
+};
 
 export default Contacts;

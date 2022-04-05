@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { useValidatedInput } from "../../app/hooks/input";
+import useValidatedInput from "../../app/hooks/input";
 
 const Login: FC = () => {
   const login = useValidatedInput("", {
@@ -19,8 +19,8 @@ const Login: FC = () => {
   };
 
   const passwordErrors = () => {
-    if (login.isEmpty) return "Введите пароль";
-    if (login.minLengthError) return "Пароль слишком короткий";
+    if (password.isEmpty) return "Введите пароль";
+    if (password.minLengthError) return "Пароль слишком короткий";
   };
 
   return (

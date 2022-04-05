@@ -6,9 +6,10 @@ interface ValidationsInterface {
   isEmpty?: boolean;
   minLength: number;
   isNotEmail?: boolean;
+  isNotPhone?: boolean;
 }
 
-export const useValidatedInput = (
+const useValidatedInput = (
   initialValue: string,
   validations: ValidationsInterface
 ) => {
@@ -24,22 +25,26 @@ export const useValidatedInput = (
     setDirty(true);
   };
 
+  const resetInput = () => {
+    setValue("");
+    setDirty(false);
+  };
+
   return {
     value,
-    onChange,
-    onBlur,
     isDirty,
     ...valid,
+    onChange,
+    onBlur,
+    resetInput,
   };
 };
 
-export const useValidation = (
-  value: string,
-  validations: ValidationsInterface
-) => {
+const useValidation = (value: string, validations: ValidationsInterface) => {
   const [isEmpty, setEmpty] = useState(true);
   const [minLengthError, setMinLengthError] = useState(false);
   const [isNotEmail, setNotEmail] = useState(false);
+  const [isNotPhone, setNotPhone] = useState(false);
   const [inputValid, setInputValid] = useState(false);
 
   useEffect(() => {
@@ -72,5 +77,7 @@ export const useValidation = (
     }
   }, [isEmpty, minLengthError, isNotEmail]);
 
-  return { isEmpty, minLengthError, isNotEmail, inputValid };
+  return { isEmpty, minLengthError, isNotEmail, isNotPhone, inputValid };
 };
+
+export default useValidatedInput;

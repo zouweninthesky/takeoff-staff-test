@@ -1,20 +1,30 @@
 @use "../../assets/scss/variables.scss" as *;
+@use "../../assets/scss/mixins.scss" as *;
 
 .contacts {
   position: relative;
 
   width: 80vw;
+  min-height: 800px;
 
   margin: 0 auto;
-  padding: 40px;
+  padding: 2.5rem;
 
-  border: 10px solid $color-primary;
+  border: 0.625rem solid $color-primary;
   border-radius: 4vw;
 
+  &__header {
+    margin: 0;
+
+    font-size: 2rem;
+  }
+
   &__create-button {
+    color: inherit;
+
     position: absolute;
-    top: 30px;
-    right: 30px;
+    top: 2.5rem;
+    right: 2.5rem;
 
     padding: 0.125rem;
 
@@ -24,6 +34,44 @@
 
     & svg {
       transform: rotate(45deg);
+    }
+
+    cursor: pointer;
+  }
+
+  @include vp-tablet {
+    width: auto;
+
+    margin: 1.5rem;
+
+    background-color: $color-background;
+  }
+
+  @include vp-mobile {
+    width: auto;
+
+    margin: auto;
+    padding: 1rem;
+
+    background-color: $color-background;
+
+    &__create-button {
+      position: fixed;
+
+      top: auto;
+      right: 20px;
+      bottom: 20px;
+
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+
+      @include deep-shadow;
+
+      & svg {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
     }
   }
 }

@@ -10,7 +10,7 @@
   color: $color-background;
 
   width: 22%;
-  height: 250px;
+  min-height: 250px;
   padding: 1rem;
 
   border-radius: 20px;
@@ -22,6 +22,8 @@
 
   &__name {
     font-size: 1.125rem;
+
+    margin-top: 0;
   }
 
   &__phone {
@@ -55,9 +57,51 @@
     // &:last-child {
     // margin-right: 0;
     // }
+
+    cursor: pointer;
   }
 
   @include vp-laptop {
     width: 27%;
+  }
+
+  @include vp-tablet {
+    width: 47.5%;
+  }
+
+  @include vp-mobile {
+    flex-direction: row;
+
+    width: 100%;
+    min-height: auto;
+    height: 10.625rem;
+
+    &__text-wrapper {
+      height: 100%;
+    }
+
+    &__buttons-wrapper {
+      display: flex;
+      flex-direction: column;
+
+      width: auto;
+      align-self: stretch;
+      height: 100%;
+
+      margin-top: 0;
+    }
+
+    &__button {
+      margin-bottom: auto;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      & svg {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
   }
 }

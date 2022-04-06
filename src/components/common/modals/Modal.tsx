@@ -1,14 +1,31 @@
 import React, { FC } from "react";
 import "./Modal.scss";
+import Icon from "../Icon/Icon";
+import { useAppDispatch } from "../../../app/hooks/redux";
+import { modalIdChanged } from "../../../features/global/global-slice";
+import { contactUnchosen } from "../../../features/contacts/contacts-slice";
 
 interface ModalInterface {
   modifier?: string;
 }
 
 const Modal: FC<ModalInterface> = ({ children, modifier }) => {
+  const dispatch = useAppDispatch();
   const className = modifier ? `modal modal--${modifier}` : "modal";
 
-  return <div className={className}>{children}</div>;
+  const handleClose = () => {
+    dispatch(contactUnchosen());
+    dispatch(modalIdChanged(""));
+  };
+
+  return (
+    <div className={className}>
+      <button type="button" className="modal__close" onClick={handleClose}>
+        <Icon id="plus" width={20} />
+      </button>
+      {children}
+    </div>
+  );
 };
 
 export default Modal;

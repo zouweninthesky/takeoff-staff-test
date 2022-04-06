@@ -46,13 +46,6 @@ const EditContact: FC<EditContactInterface> = ({ contact }) => {
     return "Неверный формат";
   };
 
-  // const clearForm = () => {
-  //   firstName.resetInput();
-  //   lastName.resetInput();
-  //   phone.resetInput();
-  //   email.resetInput();
-  // };
-
   const handleSubmit = () => {
     const editedContact = {
       id: contact.id,
@@ -63,20 +56,11 @@ const EditContact: FC<EditContactInterface> = ({ contact }) => {
     };
     dispatch(contactEdited(editedContact));
     dispatch(modalIdChanged(""));
-    // clearForm();
-  };
-
-  const handleClose = () => {
-    dispatch(contactUnchosen());
-    dispatch(modalIdChanged(""));
   };
 
   return (
     <Modal>
-      Изменить контакт
-      <button type="button" onClick={handleClose}>
-        Закрыть редактор
-      </button>
+      <h2 className="modal__header">Изменить контакт</h2>
       <div className="input">
         <label htmlFor="firstName">Имя</label>
         {firstName.isDirty && !firstName.inputValid && (
@@ -123,7 +107,7 @@ const EditContact: FC<EditContactInterface> = ({ contact }) => {
         />
       </div>
       <button
-        className="button"
+        className="button modal__button"
         type="button"
         disabled={!firstName.inputValid || !phone.inputValid}
         onClick={handleSubmit}

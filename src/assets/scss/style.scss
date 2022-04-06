@@ -170,11 +170,31 @@ a {
     color: inherit;
     font-size: 1rem;
 
-    min-height: 32px;
+    width: 100%;
+    min-height: 2rem;
 
     padding: 0.25rem 0.5rem;
 
-    border: 1px solid $color-neutrals;
+    border: 0.0625rem solid $color-neutrals;
     border-radius: 8px;
+  }
+}
+
+@include vp-tablet {
+  body {
+    background-color: $color-primary;
+    overflow: auto;
+  }
+
+  #root {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+@include vp-mobile {
+  html {
+    font-size: 5vw;
   }
 }

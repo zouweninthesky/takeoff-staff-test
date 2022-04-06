@@ -46,15 +46,9 @@ const CreateContact: FC = () => {
     dispatch(modalIdChanged(""));
   };
 
-  const handleClose = () => {
-    clearForm();
-    dispatch(modalIdChanged(""));
-  };
-
   return (
     <Modal>
-      Новый контакт
-      <button type="button" onClick={handleClose}></button>
+      <h2 className="modal__header">Новый контакт</h2>
       <div className="input">
         <label htmlFor="firstName">Имя</label>
         {firstName.isDirty && !firstName.inputValid && (
@@ -101,7 +95,7 @@ const CreateContact: FC = () => {
         />
       </div>
       <button
-        className="button"
+        className="button modal__button"
         type="button"
         disabled={!firstName.inputValid || !phone.inputValid}
         onClick={handleSubmit}

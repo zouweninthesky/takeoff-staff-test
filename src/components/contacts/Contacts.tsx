@@ -30,7 +30,7 @@ const Contacts: FC = () => {
 
   return (
     <section className="container contacts">
-      <h1>Ваши контакты</h1>
+      <h1 className="contacts__header">Ваши контакты</h1>
       <SearchBar />
       {contacts && <ContactsList />}
       {contactChosen && modalId === MODAL_EDIT && (

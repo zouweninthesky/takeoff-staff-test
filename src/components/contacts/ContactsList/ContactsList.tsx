@@ -47,7 +47,7 @@ const ContactsList = () => {
             <ContactItem key={contact.id} contact={contact} />
           ))
         ) : (
-          <p>Пока контактов нет</p>
+          <p>{search ? "Поиск не дал результатов" : "Пока контактов нет"}</p>
         )}
       </ul>
     </div>

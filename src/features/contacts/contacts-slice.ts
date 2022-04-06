@@ -3,10 +3,12 @@ import { ContactInterface } from "../../utils/data";
 
 interface ContactsState {
   contacts: ContactInterface[];
+  contactChosen: ContactInterface | undefined;
 }
 
 const initialState: ContactsState = {
   contacts: [],
+  contactChosen: undefined,
 };
 
 const contactsSlice = createSlice({
@@ -24,9 +26,32 @@ const contactsSlice = createSlice({
         (contact) => contact.id !== action.payload
       );
     },
+    contactChosen(state, action: PayloadAction<number>) {
+      state.contactChosen = state.contacts.find(
+        (contact) => contact.id === action.payload
+      );
+    },
+    contactUnchosen(state) {
+      state.contactChosen = undefined;
+    },
+    contactEdited(state, action: PayloadAction<Partial<ContactInterface>>) {
+      const contactEditedIndex = state.contacts.findIndex(
+        (contact) => contact.id === action.payload.id
+      );
+      state.contacts[contactEditedIndex] = {
+        ...state.contacts[contactEditedIndex],
+        ...action.payload,
+      };
+    },
   },
 });
 
-export const { contactsLoaded, contactCreated, contactDeleted } =
-  contactsSlice.actions;
+export const {
+  contactsLoaded,
+  contactCreated,
+  contactDeleted,
+  contactChosen,
+  contactUnchosen,
+  contactEdited,
+} = contactsSlice.actions;
 export default contactsSlice.reducer;

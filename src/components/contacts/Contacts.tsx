@@ -14,7 +14,7 @@ const Contacts: FC = () => {
   useEffect(() => {
     console.log("here i am");
     if (contacts.length === 0) dispatch(contactsLoaded(data));
-  }, []);
+  }, [contacts]);
 
   return (
     <div>

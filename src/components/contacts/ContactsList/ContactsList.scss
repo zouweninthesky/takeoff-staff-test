@@ -1,0 +1,36 @@
+@use "../../../assets/scss/mixins.scss" as *;
+
+.contacts-list {
+  max-height: 600px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &__list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    width: 103%;
+    margin-right: -10%;
+
+    list-style: none;
+    padding-left: 0;
+  }
+
+  & li {
+    margin-right: 2.5%;
+    margin-bottom: 30px;
+  }
+
+  @include vp-laptop {
+    &__list {
+      width: 105%;
+    }
+
+    & li {
+      margin-right: 6%;
+    }
+  }
+}

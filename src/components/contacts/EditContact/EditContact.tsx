@@ -3,16 +3,20 @@ import React, { FC, useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "../../../app/hooks/redux";
 import useValidatedInput from "../../../app/hooks/input";
 import { ContactInterface } from "../../../utils/data";
-import { contactEdited } from "../../../features/contacts/contacts-slice";
+import {
+  contactEdited,
+  contactUnchosen,
+} from "../../../features/contacts/contacts-slice";
+import Modal from "../../common/modals/Modal";
+import { modalIdChanged } from "../../../features/global/global-slice";
 
 interface EditContactInterface {
   contact: ContactInterface;
 }
 
 const EditContact: FC<EditContactInterface> = ({ contact }) => {
-  useEffect(() => {
-    console.log("hahaha");
-  }, [contact]);
+  // useEffect(() => {
+  // }, [contact]);
 
   const firstName = useValidatedInput(contact!.firstName, {
     isEmpty: true,
@@ -58,13 +62,22 @@ const EditContact: FC<EditContactInterface> = ({ contact }) => {
       email: email.value,
     };
     dispatch(contactEdited(editedContact));
+    dispatch(modalIdChanged(""));
     // clearForm();
   };
 
+  const handleClose = () => {
+    dispatch(contactUnchosen());
+    dispatch(modalIdChanged(""));
+  };
+
   return (
-    <div>
-      Изменить {contact.firstName}
-      <div>
+    <Modal>
+      Изменить контакт
+      <button type="button" onClick={handleClose}>
+        Закрыть редактор
+      </button>
+      <div className="input">
         <label htmlFor="firstName">Имя</label>
         {firstName.isDirty && !firstName.inputValid && (
           <div>{firstNameErrors()}</div>
@@ -77,7 +90,7 @@ const EditContact: FC<EditContactInterface> = ({ contact }) => {
           onChange={(e) => firstName.onChange(e)}
         />
       </div>
-      <div>
+      <div className="input">
         <label htmlFor="lastName">Фамилия</label>
         <input
           id="lastName"
@@ -87,7 +100,7 @@ const EditContact: FC<EditContactInterface> = ({ contact }) => {
           onChange={(e) => lastName.onChange(e)}
         />
       </div>
-      <div>
+      <div className="input">
         <label htmlFor="phone">Телефон</label>
         {phone.isDirty && !phone.inputValid && <div>{phoneErrors()}</div>}
         <input
@@ -98,7 +111,7 @@ const EditContact: FC<EditContactInterface> = ({ contact }) => {
           onChange={(e) => phone.onChange(e)}
         />
       </div>
-      <div>
+      <div className="input">
         <label htmlFor="email">Почта</label>
         {email.isDirty && !email.inputValid && <div>{emailErrors()}</div>}
         <input
@@ -117,7 +130,7 @@ const EditContact: FC<EditContactInterface> = ({ contact }) => {
       >
         Изменить контакт
       </button>
-    </div>
+    </Modal>
   );
 };
 

@@ -4,11 +4,13 @@ import { ContactInterface } from "../../utils/data";
 interface ContactsState {
   contacts: ContactInterface[];
   contactChosen: ContactInterface | undefined;
+  search: string;
 }
 
 const initialState: ContactsState = {
   contacts: [],
   contactChosen: undefined,
+  search: "",
 };
 
 const contactsSlice = createSlice({
@@ -43,6 +45,9 @@ const contactsSlice = createSlice({
         ...action.payload,
       };
     },
+    searchChanged(state, action: PayloadAction<string>) {
+      state.search = action.payload;
+    },
   },
 });
 
@@ -53,5 +58,6 @@ export const {
   contactChosen,
   contactUnchosen,
   contactEdited,
+  searchChanged,
 } = contactsSlice.actions;
 export default contactsSlice.reducer;

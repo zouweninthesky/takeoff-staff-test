@@ -1,0 +1,29 @@
+@use "../../assets/scss/variables.scss" as *;
+
+.contacts {
+  position: relative;
+
+  width: 80vw;
+
+  margin: 0 auto;
+  padding: 40px;
+
+  border: 10px solid $color-primary;
+  border-radius: 4vw;
+
+  &__create-button {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+
+    padding: 0.125rem;
+
+    background-color: $color-background;
+    border: 0;
+    border-radius: 0.5rem;
+
+    & svg {
+      transform: rotate(45deg);
+    }
+  }
+}

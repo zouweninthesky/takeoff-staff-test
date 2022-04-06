@@ -1,0 +1,63 @@
+@use "../../../../assets/scss/variables.scss" as *;
+@use "../../../../assets/scss/mixins.scss" as *;
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  color: $color-background;
+
+  width: 22%;
+  height: 250px;
+  padding: 1rem;
+
+  border-radius: 20px;
+  background-color: $color-primary;
+
+  &__text-wrapper {
+    margin-right: auto;
+  }
+
+  &__name {
+    font-size: 1.125rem;
+  }
+
+  &__phone {
+  }
+
+  &__email {
+  }
+
+  &__buttons-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+
+    margin-top: auto;
+  }
+
+  &__button {
+    font-family: inherit;
+    color: $color-primary;
+
+    // margin-right: 0.75rem;
+    padding: 0.125rem;
+
+    background-color: $color-background;
+    border: 0;
+    border-radius: 0.5rem;
+
+    // &:last-child {
+    // margin-right: 0;
+    // }
+  }
+
+  @include vp-laptop {
+    width: 27%;
+  }
+}

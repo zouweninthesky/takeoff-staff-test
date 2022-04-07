@@ -1,14 +1,14 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 
-import { useAppSelector, useAppDispatch } from "../../../app/hooks/redux";
-import useValidatedInput from "../../../app/hooks/input";
-import { ContactInterface } from "../../../utils/data";
+import Modal from "../../common/modals/Modal";
+import { useAppDispatch } from "../../../app/hooks/redux";
 import {
   contactEdited,
   contactUnchosen,
 } from "../../../features/contacts/contacts-slice";
-import Modal from "../../common/modals/Modal";
 import { modalIdChanged } from "../../../features/global/global-slice";
+import useValidatedInput from "../../../app/hooks/input";
+import { ContactInterface } from "../../../utils/data";
 
 interface EditContactInterface {
   contact: ContactInterface;

@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import "./Modal.scss";
+
 import Icon from "../Icon/Icon";
 import { useAppDispatch } from "../../../app/hooks/redux";
 import { modalIdChanged } from "../../../features/global/global-slice";

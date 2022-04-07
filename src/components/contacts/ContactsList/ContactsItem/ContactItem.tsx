@@ -2,11 +2,11 @@ import React, { FC } from "react";
 import "./ContactItem.scss";
 
 import Icon from "../../../common/Icon/Icon";
+import { useAppDispatch } from "../../../../app/hooks/redux";
 import {
   contactDeleted,
   contactChosen,
 } from "../../../../features/contacts/contacts-slice";
-import { useAppDispatch } from "../../../../app/hooks/redux";
 import { modalIdChanged } from "../../../../features/global/global-slice";
 import { ContactInterface } from "../../../../utils/data";
 import { MODAL_EDIT } from "../../../../utils/constants";

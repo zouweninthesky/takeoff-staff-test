@@ -1,19 +1,18 @@
 import React, { FC, useEffect } from "react";
 import "./Contacts.scss";
 
-import { useAppSelector, useAppDispatch } from "../../app/hooks/redux";
-
 import ContactsList from "./ContactsList/ContactsList";
 import CreateContact from "./CreateContact/CreateContact";
+import EditContact from "./EditContact/EditContact";
 import Overlay from "../common/modals/Overlay";
+import SearchBar from "./SearchBar/SearchBar";
 import Icon from "../common/Icon/Icon";
 
+import { useAppSelector, useAppDispatch } from "../../app/hooks/redux";
+import { modalIdChanged } from "../../features/global/global-slice";
 import { contactsLoaded } from "../../features/contacts/contacts-slice";
 import data from "../../utils/data";
-import EditContact from "./EditContact/EditContact";
 import { MODAL_EDIT, MODAL_CREATE } from "../../utils/constants";
-import { modalIdChanged } from "../../features/global/global-slice";
-import SearchBar from "./SearchBar/SearchBar";
 
 const Contacts: FC = () => {
   const { contacts, contactChosen } = useAppSelector((state) => state.contacts);

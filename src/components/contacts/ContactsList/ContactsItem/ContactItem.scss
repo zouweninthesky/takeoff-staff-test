@@ -47,18 +47,22 @@
     font-family: inherit;
     color: $color-primary;
 
-    // margin-right: 0.75rem;
     padding: 0.125rem;
 
     background-color: $color-background;
     border: 0;
     border-radius: 0.5rem;
 
-    // &:last-child {
-    // margin-right: 0;
-    // }
+    @include transition-standard;
 
     cursor: pointer;
+
+    &:hover,
+    &:focus {
+      outline: none;
+
+      color: $color-primary-dark;
+    }
   }
 
   @include vp-laptop {

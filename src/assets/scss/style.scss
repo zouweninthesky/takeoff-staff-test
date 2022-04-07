@@ -127,13 +127,16 @@ a {
 
   padding: 0.625rem 1.25rem;
 
-  border: 0.0625rem solid $color-neutrals;
+  border: 0.0625rem solid $color-primary;
   border-radius: 0.5rem;
   background-color: transparent;
   cursor: pointer;
 
+  &:hover,
   &:focus {
     outline: none;
+
+    border-color: $color-primary-dark;
   }
 }
 
@@ -153,6 +156,8 @@ a {
   left: 0;
   z-index: $z-overlay;
   background-color: $color-overlay;
+
+  cursor: pointer;
 }
 
 .input {
@@ -162,6 +167,16 @@ a {
   justify-content: flex-start;
 
   & label {
+    font-weight: 700;
+
+    margin-bottom: 0.5rem;
+
+    cursor: pointer;
+  }
+
+  & p {
+    color: $color-danger;
+    margin-top: 0;
     margin-bottom: 0.5rem;
   }
 
@@ -175,8 +190,17 @@ a {
 
     padding: 0.25rem 0.5rem;
 
-    border: 0.0625rem solid $color-neutrals;
+    border: 0.0625rem solid $color-primary-lighter;
     border-radius: 8px;
+
+    @include transition-standard;
+
+    &:hover,
+    &:focus {
+      outline: none;
+
+      border-color: $color-primary-dark;
+    }
   }
 }
 
@@ -189,7 +213,8 @@ a {
   #root {
     width: 100%;
     height: auto;
-    display: block;
+    min-height: 100vh;
+    // display: block;
   }
 }
 

@@ -31,3 +31,7 @@
 
   opacity: 0.3;
 }
+
+@mixin transition-standard {
+  transition: 300ms;
+}

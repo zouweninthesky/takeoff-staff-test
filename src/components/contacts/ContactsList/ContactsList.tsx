@@ -1,9 +1,8 @@
 import React from "react";
 import "./ContactsList.scss";
 
-import { useAppSelector } from "../../../app/hooks/redux";
-
 import ContactItem from "./ContactsItem/ContactItem";
+import { useAppSelector } from "../../../app/hooks/redux";
 import { ContactInterface } from "../../../utils/data";
 import { LETTERS_REGEXP, DIGITS_REGEXP } from "../../../utils/reg-exp";
 

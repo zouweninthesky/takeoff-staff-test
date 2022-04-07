@@ -1,4 +1,6 @@
 import React, { FC } from "react";
+import "./Login.scss";
+
 import useValidatedInput from "../../app/hooks/input";
 
 const Login: FC = () => {
@@ -24,10 +26,11 @@ const Login: FC = () => {
   };
 
   return (
-    <div>
-      <div>
+    <section className="login">
+      <h1 className="login__header">Войдите</h1>
+      <div className="input">
         <label htmlFor="login">Логин</label>
-        {login.isDirty && !login.inputValid && <div>{loginErrors()}</div>}
+        {login.isDirty && !login.inputValid && <p>{loginErrors()}</p>}
         <input
           id="login"
           type="text"
@@ -36,11 +39,9 @@ const Login: FC = () => {
           onChange={(e) => login.onChange(e)}
         />
       </div>
-      <div>
+      <div className="input">
         <label htmlFor="password">Пароль</label>
-        {password.isDirty && !password.inputValid && (
-          <div>{passwordErrors()}</div>
-        )}
+        {password.isDirty && !password.inputValid && <p>{passwordErrors()}</p>}
         <input
           id="password"
           type="text"
@@ -49,10 +50,13 @@ const Login: FC = () => {
           onChange={(e) => password.onChange(e)}
         />
       </div>
-      <button disabled={!login.inputValid || !password.inputValid}>
-        Нажми-ка
+      <button
+        className="button"
+        disabled={!login.inputValid || !password.inputValid}
+      >
+        Войти
       </button>
-    </div>
+    </section>
   );
 };
 

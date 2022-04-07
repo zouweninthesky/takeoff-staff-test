@@ -5,7 +5,7 @@
   position: relative;
 
   width: 80vw;
-  min-height: 800px;
+  min-height: 600px;
 
   margin: 0 auto;
   padding: 2.5rem;
@@ -32,11 +32,23 @@
     border: 0;
     border-radius: 0.5rem;
 
+    @include transition-standard;
+
+    cursor: pointer;
+
     & svg {
       transform: rotate(45deg);
     }
 
-    cursor: pointer;
+    &:hover,
+    &:focus {
+      color: $color-neutrals-dark;
+    }
+  }
+
+  & > .input label {
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
   }
 
   @include vp-tablet {

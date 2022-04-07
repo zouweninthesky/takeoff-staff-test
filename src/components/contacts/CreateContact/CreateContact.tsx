@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 
-import useValidatedInput from "../../../app/hooks/input";
+import Modal from "../../common/modals/Modal";
 import { useAppDispatch } from "../../../app/hooks/redux";
 import { contactCreated } from "../../../features/contacts/contacts-slice";
 import { modalIdChanged } from "../../../features/global/global-slice";
-import Modal from "../../common/modals/Modal";
+import useValidatedInput from "../../../app/hooks/input";
 
 const CreateContact: FC = () => {
   const firstName = useValidatedInput("", { isEmpty: true, minLength: 0 });

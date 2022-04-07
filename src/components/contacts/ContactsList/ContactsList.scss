@@ -1,7 +1,9 @@
 @use "../../../assets/scss/mixins.scss" as *;
 
 .contacts-list {
-  max-height: 600px;
+  max-height: 500px;
+
+  margin-top: 1rem;
   overflow-y: auto;
 
   &__list {
@@ -12,6 +14,7 @@
     align-items: flex-start;
 
     list-style: none;
+
     padding-left: 0;
   }
 

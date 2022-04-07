@@ -1,0 +1,29 @@
+@use "../../assets/scss/mixins.scss" as *;
+@use "../../assets/scss/variables.scss" as *;
+
+.login {
+  padding: 2.5rem;
+
+  border: 0.625rem solid $color-primary;
+  border-radius: 2rem;
+
+  &__header {
+    margin-top: 0;
+  }
+
+  & .input {
+    width: 100%;
+
+    margin-bottom: 1rem;
+  }
+
+  & .button {
+    width: 100%;
+
+    margin-top: 2rem;
+  }
+
+  @include vp-tablet {
+    background-color: $color-background;
+  }
+}

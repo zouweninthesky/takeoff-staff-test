@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 import { Navigate } from "react-router";
 
-// import Auth from "../../../store/auth";
-
-const auth = true;
+import { useAppSelector } from "../../../app/hooks/redux";
 
 const PrivateRoute: FC = ({ children }) => {
-  return auth ? <>{children}</> : <Navigate to="/login" />;
+  const { loggedIn } = useAppSelector((state) => state.auth);
+
+  return loggedIn ? <>{children}</> : <Navigate to="/login" />;
 };
 
 export default PrivateRoute;

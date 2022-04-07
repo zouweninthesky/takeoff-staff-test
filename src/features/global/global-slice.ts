@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import fetchContacts from "../contacts/contacts-thunks";
+import fetchLogin from "../auth/auth-thunks";
 
 interface GlobalState {
   loading: boolean;
@@ -20,10 +21,16 @@ const globalSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchContacts.pending, (state, action) => {
+    builder.addCase(fetchContacts.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(fetchContacts.fulfilled, (state, action) => {
+    builder.addCase(fetchContacts.fulfilled, (state) => {
+      state.loading = false;
+    });
+    builder.addCase(fetchLogin.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(fetchLogin.fulfilled, (state) => {
       state.loading = false;
     });
   },

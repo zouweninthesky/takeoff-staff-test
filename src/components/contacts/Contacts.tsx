@@ -10,8 +10,8 @@ import Icon from "../common/Icon/Icon";
 
 import { useAppSelector, useAppDispatch } from "../../app/hooks/redux";
 import { modalIdChanged } from "../../features/global/global-slice";
-// import { contactsLoaded } from "../../features/contacts/contacts-slice";
 import fetchContacts from "../../features/contacts/contacts-thunks";
+import { signOut } from "../../features/auth/auth-slice";
 import { MODAL_EDIT, MODAL_CREATE } from "../../utils/constants";
 
 const Contacts: FC = () => {
@@ -27,9 +27,20 @@ const Contacts: FC = () => {
     dispatch(modalIdChanged(MODAL_CREATE));
   };
 
+  const handleLogout = () => {
+    dispatch(signOut());
+  };
+
   return (
     <section className="container contacts">
       <h1 className="contacts__header">Ваши контакты</h1>
+      <button
+        className="contacts__button contacts__button--logout"
+        type="button"
+        onClick={handleLogout}
+      >
+        <Icon id="logout" width={40} />
+      </button>
       <SearchBar />
       {contacts && <ContactsList />}
       {contactChosen && modalId === MODAL_EDIT && (
@@ -38,7 +49,7 @@ const Contacts: FC = () => {
       {modalId === MODAL_CREATE && <CreateContact />}
       <Overlay />
       <button
-        className="contacts__create-button"
+        className="contacts__button contacts__button--create"
         type="button"
         onClick={handleCreate}
       >

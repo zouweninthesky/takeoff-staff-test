@@ -138,6 +138,10 @@ a {
 
     border-color: $color-primary-dark;
   }
+
+  &:disabled {
+    @include disable-standard;
+  }
 }
 
 .container {

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ContactInterface } from "../../utils/data";
+import fetchContacts from "./contacts-thunks";
 
 interface ContactsState {
   contacts: ContactInterface[];
@@ -17,9 +18,9 @@ const contactsSlice = createSlice({
   name: "contacts",
   initialState,
   reducers: {
-    contactsLoaded(state, action: PayloadAction<ContactInterface[]>) {
-      state.contacts = action.payload;
-    },
+    // contactsLoaded(state, action: PayloadAction<ContactInterface[]>) {
+    //   state.contacts = action.payload;
+    // },
     contactCreated(state, action: PayloadAction<ContactInterface>) {
       state.contacts.push(action.payload);
     },
@@ -49,10 +50,15 @@ const contactsSlice = createSlice({
       state.search = action.payload;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(fetchContacts.fulfilled, (state, action) => {
+      state.contacts = action.payload;
+    });
+  },
 });
 
 export const {
-  contactsLoaded,
+  // contactsLoaded,
   contactCreated,
   contactDeleted,
   contactChosen,

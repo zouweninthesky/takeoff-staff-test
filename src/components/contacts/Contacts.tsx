@@ -10,8 +10,8 @@ import Icon from "../common/Icon/Icon";
 
 import { useAppSelector, useAppDispatch } from "../../app/hooks/redux";
 import { modalIdChanged } from "../../features/global/global-slice";
-import { contactsLoaded } from "../../features/contacts/contacts-slice";
-import data from "../../utils/data";
+// import { contactsLoaded } from "../../features/contacts/contacts-slice";
+import fetchContacts from "../../features/contacts/contacts-thunks";
 import { MODAL_EDIT, MODAL_CREATE } from "../../utils/constants";
 
 const Contacts: FC = () => {
@@ -20,7 +20,7 @@ const Contacts: FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (contacts.length === 0) dispatch(contactsLoaded(data));
+    if (contacts.length === 0) dispatch(fetchContacts());
   }, [contacts]);
 
   const handleCreate = () => {

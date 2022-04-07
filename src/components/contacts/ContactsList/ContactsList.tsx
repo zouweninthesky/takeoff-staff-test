@@ -2,12 +2,14 @@ import React from "react";
 import "./ContactsList.scss";
 
 import ContactItem from "./ContactsItem/ContactItem";
+import Loader from "../../common/Loader/Loader";
 import { useAppSelector } from "../../../app/hooks/redux";
 import { ContactInterface } from "../../../utils/data";
 import { LETTERS_REGEXP, DIGITS_REGEXP } from "../../../utils/reg-exp";
 
 const ContactsList = () => {
   const { contacts, search } = useAppSelector((state) => state.contacts);
+  const { loading } = useAppSelector((state) => state.global);
 
   console.log(LETTERS_REGEXP.test(String(search).toLowerCase()));
 
@@ -40,15 +42,18 @@ const ContactsList = () => {
 
   return (
     <div className="contacts-list">
-      <ul className="contacts-list__list">
-        {filteredContacts.length ? (
-          filteredContacts.map((contact) => (
-            <ContactItem key={contact.id} contact={contact} />
-          ))
-        ) : (
-          <p>{search ? "Поиск не дал результатов" : "Пока контактов нет"}</p>
-        )}
-      </ul>
+      {loading && <Loader />}
+      {!loading && (
+        <ul className="contacts-list__list">
+          {filteredContacts.length ? (
+            filteredContacts.map((contact) => (
+              <ContactItem key={contact.id} contact={contact} />
+            ))
+          ) : (
+            <p>{search ? "Поиск не дал результатов" : "Пока контактов нет"}</p>
+          )}
+        </ul>
+      )}
     </div>
   );
 };

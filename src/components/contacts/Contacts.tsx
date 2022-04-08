@@ -30,7 +30,6 @@ const Contacts: FC = () => {
       window.scrollTo(0, parseInt(scrollY || "0") * -1);
     } else {
       const top = window.scrollY;
-      console.log(top);
       document.body.style.position = "fixed";
       document.body.style.top = `-${top}px`;
     }

@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 
-interface IconInterface {
+interface IconProps {
   id: string;
   width: number;
   height?: number;
   className?: string;
 }
 
-const Icon: FC<IconInterface> = ({ id, width, height, className }) => {
+const Icon: FC<IconProps> = ({ id, width, height, className }) => {
   const realHeight = height ? height : width;
 
   return (

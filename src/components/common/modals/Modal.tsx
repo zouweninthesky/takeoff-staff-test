@@ -6,11 +6,11 @@ import { useAppDispatch } from "../../../app/hooks/redux";
 import { modalIdChanged } from "../../../features/global/global-slice";
 import { contactUnchosen } from "../../../features/contacts/contacts-slice";
 
-interface ModalInterface {
+interface ModalProps {
   modifier?: string;
 }
 
-const Modal: FC<ModalInterface> = ({ children, modifier }) => {
+const Modal: FC<ModalProps> = ({ children, modifier }) => {
   const dispatch = useAppDispatch();
   const className = modifier ? `modal modal--${modifier}` : "modal";
 

@@ -1,4 +1,2 @@
-const MODAL_EDIT = "edit";
-const MODAL_CREATE = "create";
-
-export { MODAL_EDIT, MODAL_CREATE };
+export const MODAL_EDIT = "edit";
+export const MODAL_CREATE = "create";

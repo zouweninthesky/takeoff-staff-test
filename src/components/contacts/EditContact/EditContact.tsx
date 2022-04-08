@@ -62,9 +62,9 @@ const EditContact: FC<EditContactInterface> = ({ contact }) => {
     <Modal>
       <h2 className="modal__header">Изменить контакт</h2>
       <div className="input">
-        <label htmlFor="firstName">Имя</label>
+        <label htmlFor="firstName">Имя *</label>
         {firstName.isDirty && !firstName.inputValid && (
-          <div>{firstNameErrors()}</div>
+          <p>{firstNameErrors()}</p>
         )}
         <input
           id="firstName"
@@ -85,8 +85,8 @@ const EditContact: FC<EditContactInterface> = ({ contact }) => {
         />
       </div>
       <div className="input">
-        <label htmlFor="phone">Телефон</label>
-        {phone.isDirty && !phone.inputValid && <div>{phoneErrors()}</div>}
+        <label htmlFor="phone">Телефон *</label>
+        {phone.isDirty && !phone.inputValid && <p>{phoneErrors()}</p>}
         <input
           id="phone"
           type="text"
@@ -97,7 +97,7 @@ const EditContact: FC<EditContactInterface> = ({ contact }) => {
       </div>
       <div className="input">
         <label htmlFor="email">Почта</label>
-        {email.isDirty && !email.inputValid && <div>{emailErrors()}</div>}
+        {email.isDirty && !email.inputValid && <p>{emailErrors()}</p>}
         <input
           id="email"
           type="text"

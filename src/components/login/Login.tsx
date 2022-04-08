@@ -59,7 +59,7 @@ const Login: FC = () => {
           )}
           <input
             id="password"
-            type="text"
+            type="password"
             value={password.value}
             onBlur={password.onBlur}
             onChange={(e) => password.onChange(e)}

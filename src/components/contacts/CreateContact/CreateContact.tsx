@@ -9,7 +9,11 @@ import useValidatedInput from "../../../app/hooks/input";
 const CreateContact: FC = () => {
   const firstName = useValidatedInput("", { isEmpty: true, minLength: 0 });
   const lastName = useValidatedInput("", { minLength: 0 });
-  const phone = useValidatedInput("", { isEmpty: true, minLength: 0 });
+  const phone = useValidatedInput("", {
+    isEmpty: true,
+    minLength: 0,
+    isNotPhone: true,
+  });
   const email = useValidatedInput("", { minLength: 0, isNotEmail: true });
   const dispatch = useAppDispatch();
 
@@ -50,9 +54,9 @@ const CreateContact: FC = () => {
     <Modal>
       <h2 className="modal__header">Новый контакт</h2>
       <div className="input">
-        <label htmlFor="firstName">Имя</label>
+        <label htmlFor="firstName">Имя *</label>
         {firstName.isDirty && !firstName.inputValid && (
-          <div>{firstNameErrors()}</div>
+          <p>{firstNameErrors()}</p>
         )}
         <input
           id="firstName"
@@ -73,8 +77,8 @@ const CreateContact: FC = () => {
         />
       </div>
       <div className="input">
-        <label htmlFor="phone">Телефон</label>
-        {phone.isDirty && !phone.inputValid && <div>{phoneErrors()}</div>}
+        <label htmlFor="phone">Телефон *</label>
+        {phone.isDirty && !phone.inputValid && <p>{phoneErrors()}</p>}
         <input
           id="phone"
           type="text"
@@ -85,7 +89,7 @@ const CreateContact: FC = () => {
       </div>
       <div className="input">
         <label htmlFor="email">Почта</label>
-        {email.isDirty && !email.inputValid && <div>{emailErrors()}</div>}
+        {email.isDirty && !email.inputValid && <p>{emailErrors()}</p>}
         <input
           id="email"
           type="text"

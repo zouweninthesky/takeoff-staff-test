@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { EMAIL_REGEXP } from "../../utils/reg-exp";
+import { EMAIL_REGEXP, PHONE_REGEXP } from "../../utils/reg-exp";
 
 interface ValidationsInterface {
   isEmpty?: boolean;
@@ -65,12 +65,16 @@ const useValidation = (value: string, validations: ValidationsInterface) => {
             ? setNotEmail(false)
             : setNotEmail(true);
           break;
+        case "isNotPhone":
+          PHONE_REGEXP.test(String(value).toLowerCase())
+            ? setNotPhone(false)
+            : setNotPhone(true);
       }
     }
   }, [value]);
 
   useEffect(() => {
-    if (isEmpty || minLengthError || isNotEmail) {
+    if (isEmpty || minLengthError || isNotEmail || isNotPhone) {
       setInputValid(false);
     } else {
       setInputValid(true);

@@ -44,11 +44,12 @@ body {
 }
 
 #root {
-  width: 100%;
-  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  width: 100%;
+  height: 100vh;
 }
 
 a {
@@ -95,15 +96,16 @@ a {
 
 .overlay {
   position: fixed;
-  width: 100vw;
-  height: 100vh;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
   z-index: $z-overlay;
   background-color: $color-overlay;
-
   cursor: pointer;
 }
 
@@ -123,14 +125,15 @@ a {
 
   & p {
     color: $color-danger;
+
     margin-top: 0;
     margin-bottom: 0.5rem;
   }
 
   & input {
     font-family: inherit;
-    color: inherit;
     font-size: 1rem;
+    color: inherit;
 
     width: 100%;
     min-height: 2rem;
@@ -138,7 +141,7 @@ a {
     padding: 0.25rem 0.5rem;
 
     border: 0.0625rem solid $color-primary-lighter;
-    border-radius: 8px;
+    border-radius: 0.5rem;
 
     @include transition-standard;
 
@@ -161,7 +164,6 @@ a {
     width: 100%;
     height: auto;
     min-height: 100vh;
-    // display: block;
   }
 }
 

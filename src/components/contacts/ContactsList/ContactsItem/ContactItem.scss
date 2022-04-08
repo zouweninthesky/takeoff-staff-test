@@ -10,10 +10,11 @@
   color: $color-background;
 
   width: 22%;
-  min-height: 250px;
+  min-height: 15.625rem;
+
   padding: 1rem;
 
-  border-radius: 20px;
+  border-radius: 1.25rem;
   background-color: $color-primary;
 
   &__text-wrapper {

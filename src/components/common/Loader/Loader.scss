@@ -5,15 +5,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
   width: 100%;
   height: 100%;
 
   &:after {
     content: " ";
+
     display: block;
+
     width: 8rem;
     height: 8rem;
+
     margin: 2rem;
+
     border-radius: 50%;
     border: 0.625rem solid $color-primary;
     border-color: $color-primary transparent $color-primary transparent;

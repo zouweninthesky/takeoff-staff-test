@@ -1,9 +1,10 @@
 @use "../../../assets/scss/mixins.scss" as *;
 
 .contacts-list {
-  max-height: 500px;
+  max-height: 31.25rem;
 
   margin-top: 1rem;
+
   overflow-y: auto;
 
   &__list {
@@ -20,7 +21,7 @@
 
   & li {
     margin-right: 3.8%;
-    margin-bottom: 40px;
+    margin-bottom: 2.5rem;
 
     &:nth-child(4n) {
       margin-right: 0;

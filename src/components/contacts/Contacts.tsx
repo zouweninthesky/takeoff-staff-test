@@ -22,6 +22,20 @@ const Contacts: FC = () => {
     if (contacts.length === 0) dispatch(fetchContacts());
   }, [contacts]);
 
+  useEffect(() => {
+    if (modalId === "") {
+      const scrollY = document.body.style.top;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      window.scrollTo(0, parseInt(scrollY || "0") * -1);
+    } else {
+      const top = window.scrollY;
+      console.log(top);
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${top}px`;
+    }
+  }, [modalId]);
+
   const handleCreate = () => {
     dispatch(modalIdChanged(MODAL_CREATE));
   };

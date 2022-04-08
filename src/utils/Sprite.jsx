@@ -1,6 +1,8 @@
 import React from "react";
 import SvgSprite from "react-svg-sprite";
 
+// К сожалению, автор не подготовил типизацию для своей библиотеки, поэтому файл формата .jsx
+
 const Sprite = () => {
   return (
     <SvgSprite

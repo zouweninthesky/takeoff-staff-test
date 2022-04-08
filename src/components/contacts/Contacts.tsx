@@ -2,8 +2,7 @@ import React, { FC, useEffect } from "react";
 import "./Contacts.scss";
 
 import ContactsList from "./ContactsList/ContactsList";
-import CreateContact from "./CreateContact/CreateContact";
-import EditContact from "./EditContact/EditContact";
+import ContactsForm from "./ContactsForm/ContactsForm";
 import Overlay from "../common/modals/Overlay";
 import SearchBar from "./SearchBar/SearchBar";
 import Icon from "../common/Icon/Icon";
@@ -44,9 +43,9 @@ const Contacts: FC = () => {
       <SearchBar />
       {contacts && <ContactsList />}
       {contactChosen && modalId === MODAL_EDIT && (
-        <EditContact contact={contactChosen} />
+        <ContactsForm contact={contactChosen} />
       )}
-      {modalId === MODAL_CREATE && <CreateContact />}
+      {modalId === MODAL_CREATE && <ContactsForm />}
       <Overlay />
       <button
         className="contacts__button contacts__button--create"

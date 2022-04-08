@@ -11,8 +11,6 @@ const ContactsList = () => {
   const { contacts, search } = useAppSelector((state) => state.contacts);
   const { loading } = useAppSelector((state) => state.global);
 
-  console.log(LETTERS_REGEXP.test(String(search).toLowerCase()));
-
   const filterContacts = (contacts: ContactInterface[], search: string) => {
     let filteredContacts: ContactInterface[] = [];
     if (!LETTERS_REGEXP.test(String(search).toLowerCase())) {

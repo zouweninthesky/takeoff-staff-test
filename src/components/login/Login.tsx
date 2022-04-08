@@ -11,23 +11,19 @@ const Login: FC = () => {
   const { loggedIn } = useAppSelector((state) => state.auth);
   const login = useValidatedInput("", {
     isEmpty: true,
-    minLength: 3,
     isNotEmail: true,
   });
   const password = useValidatedInput("", {
     isEmpty: true,
-    minLength: 5,
   });
 
   const loginErrors = () => {
     if (login.isEmpty) return "Введите логин";
-    if (login.minLengthError) return "Логин слишком короткий";
     if (login.isNotEmail) return "Неподходящий формат";
   };
 
   const passwordErrors = () => {
     if (password.isEmpty) return "Введите пароль";
-    if (password.minLengthError) return "Пароль слишком короткий";
   };
 
   const handleLogin = (e: FormEvent) => {

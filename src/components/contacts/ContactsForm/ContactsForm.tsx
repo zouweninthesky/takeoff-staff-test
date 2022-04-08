@@ -2,19 +2,32 @@ import React, { FC } from "react";
 
 import Modal from "../../common/modals/Modal";
 import { useAppDispatch } from "../../../app/hooks/redux";
-import { contactCreated } from "../../../features/contacts/contacts-slice";
+import {
+  contactCreated,
+  contactEdited,
+  contactUnchosen,
+} from "../../../features/contacts/contacts-slice";
 import { modalIdChanged } from "../../../features/global/global-slice";
 import useValidatedInput from "../../../app/hooks/input";
+import { ContactInterface } from "../../../utils/data";
 
-const CreateContact: FC = () => {
-  const firstName = useValidatedInput("", { isEmpty: true, minLength: 0 });
-  const lastName = useValidatedInput("", { minLength: 0 });
-  const phone = useValidatedInput("", {
+interface ContactsFormProps {
+  contact?: ContactInterface;
+}
+
+const ContactsForm: FC<ContactsFormProps> = ({ contact }) => {
+  const firstName = useValidatedInput(contact ? contact.firstName : "", {
     isEmpty: true,
-    minLength: 0,
+  });
+  const lastName = useValidatedInput(contact ? contact.lastName : "", {});
+  const phone = useValidatedInput(contact ? contact.phone : "", {
+    isEmpty: true,
     isNotPhone: true,
   });
-  const email = useValidatedInput("", { minLength: 0, isNotEmail: true });
+  const email = useValidatedInput(contact ? contact.email : "", {
+    isNotEmail: true,
+    mayBeEmpty: true,
+  });
   const dispatch = useAppDispatch();
 
   const firstNameErrors = () => {
@@ -30,29 +43,28 @@ const CreateContact: FC = () => {
     return "Неверный формат";
   };
 
-  const clearForm = () => {
-    firstName.resetInput();
-    lastName.resetInput();
-    phone.resetInput();
-    email.resetInput();
-  };
-
   const handleSubmit = () => {
     const newContact = {
-      id: Date.now(),
+      id: contact ? contact.id : Date.now(),
       firstName: firstName.value,
       lastName: lastName.value,
       phone: phone.value,
       email: email.value,
     };
-    dispatch(contactCreated(newContact));
-    clearForm();
+    if (contact) {
+      dispatch(contactEdited(newContact));
+      dispatch(contactUnchosen());
+    } else {
+      dispatch(contactCreated(newContact));
+    }
     dispatch(modalIdChanged(""));
   };
 
   return (
     <Modal>
-      <h2 className="modal__header">Новый контакт</h2>
+      <h2 className="modal__header">
+        {contact ? "Изменить" : "Новый"} контакт
+      </h2>
       <div className="input">
         <label htmlFor="firstName">Имя *</label>
         {firstName.isDirty && !firstName.inputValid && (
@@ -89,7 +101,9 @@ const CreateContact: FC = () => {
       </div>
       <div className="input">
         <label htmlFor="email">Почта</label>
-        {email.isDirty && !email.inputValid && <p>{emailErrors()}</p>}
+        {email.isDirty && email.value && !email.inputValid && (
+          <p>{emailErrors()}</p>
+        )}
         <input
           id="email"
           type="text"
@@ -101,13 +115,17 @@ const CreateContact: FC = () => {
       <button
         className="button modal__button"
         type="button"
-        disabled={!firstName.inputValid || !phone.inputValid}
+        disabled={
+          !firstName.inputValid ||
+          !phone.inputValid ||
+          (email.value !== "" && !email.inputValid)
+        }
         onClick={handleSubmit}
       >
-        Создать контакт
+        {contact ? "Изменить" : "Создать"} контакт
       </button>
     </Modal>
   );
 };
 
-export default CreateContact;
+export default ContactsForm;

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 
-import { EMAIL_REGEXP, PHONE_REGEXP } from "../../utils/reg-exp";
+import { EMAIL_REGEXP, PHONE_REGEXP, DIGITS_REGEXP } from "../../utils/reg-exp";
 
 interface ValidationsInterface {
   isEmpty?: boolean;
-  minLength: number;
+  mayBeEmpty?: boolean;
   isNotEmail?: boolean;
   isNotPhone?: boolean;
 }
@@ -41,8 +41,7 @@ const useValidatedInput = (
 };
 
 const useValidation = (value: string, validations: ValidationsInterface) => {
-  const [isEmpty, setEmpty] = useState(true);
-  const [minLengthError, setMinLengthError] = useState(false);
+  const [isEmpty, setEmpty] = useState(validations.mayBeEmpty ? false : true);
   const [isNotEmail, setNotEmail] = useState(false);
   const [isNotPhone, setNotPhone] = useState(false);
   const [inputValid, setInputValid] = useState(false);
@@ -54,34 +53,30 @@ const useValidation = (value: string, validations: ValidationsInterface) => {
           value ? setEmpty(false) : setEmpty(true);
           break;
 
-        case "minLength":
-          value.length < validations[validation]
-            ? setMinLengthError(true)
-            : setMinLengthError(false);
-          break;
-
         case "isNotEmail":
           EMAIL_REGEXP.test(String(value).toLowerCase())
             ? setNotEmail(false)
             : setNotEmail(true);
           break;
+
         case "isNotPhone":
           PHONE_REGEXP.test(String(value).toLowerCase())
             ? setNotPhone(false)
             : setNotPhone(true);
+          break;
       }
     }
   }, [value]);
 
   useEffect(() => {
-    if (isEmpty || minLengthError || isNotEmail || isNotPhone) {
+    if (isEmpty || isNotEmail || isNotPhone) {
       setInputValid(false);
     } else {
       setInputValid(true);
     }
-  }, [isEmpty, minLengthError, isNotEmail]);
+  }, [isEmpty, isNotEmail, isNotPhone]);
 
-  return { isEmpty, minLengthError, isNotEmail, isNotPhone, inputValid };
+  return { isEmpty, isNotEmail, isNotPhone, inputValid };
 };
 
 export default useValidatedInput;

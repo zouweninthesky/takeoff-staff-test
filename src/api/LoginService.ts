@@ -5,7 +5,6 @@ class LoginService {
     const url = `${LOGIN_LINK}?login=${login}&password=${password}`;
 
     const response = await fetch(url);
-    console.log(response);
     return response;
   }
 }

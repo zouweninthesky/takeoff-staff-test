@@ -35,6 +35,10 @@
     background-color: transparent;
     border: 0;
     cursor: pointer;
+
+    &:active {
+      @include active-standard;
+    }
   }
 
   &__header {

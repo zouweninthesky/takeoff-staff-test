@@ -9,7 +9,7 @@ import {
 } from "../../../../features/contacts/contacts-slice";
 import { modalIdChanged } from "../../../../features/global/global-slice";
 import { ContactInterface } from "../../../../utils/data";
-import { MODAL_EDIT } from "../../../../utils/constants";
+import { MODAL_EDIT } from "../../../../utils/modal-ids";
 
 interface ContactItemProps {
   contact: ContactInterface;

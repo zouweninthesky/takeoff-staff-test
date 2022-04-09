@@ -10,8 +10,8 @@ import Icon from "../common/Icon/Icon";
 import { useAppSelector, useAppDispatch } from "../../app/hooks/redux";
 import { modalIdChanged } from "../../features/global/global-slice";
 import fetchContacts from "../../features/contacts/contacts-thunks";
-import { signOut } from "../../features/auth/auth-slice";
-import { MODAL_EDIT, MODAL_CREATE } from "../../utils/constants";
+import { signedOut } from "../../features/auth/auth-slice";
+import { MODAL_EDIT, MODAL_CREATE } from "../../utils/modal-ids";
 
 const Contacts: FC = () => {
   const { contacts, contactChosen } = useAppSelector((state) => state.contacts);
@@ -20,7 +20,7 @@ const Contacts: FC = () => {
 
   useEffect(() => {
     if (contacts.length === 0) dispatch(fetchContacts());
-  }, [contacts]);
+  }, [contacts, dispatch]);
 
   useEffect(() => {
     if (modalId === "") {
@@ -40,7 +40,7 @@ const Contacts: FC = () => {
   };
 
   const handleLogout = () => {
-    dispatch(signOut());
+    dispatch(signedOut());
   };
 
   return (

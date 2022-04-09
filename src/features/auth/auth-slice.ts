@@ -1,28 +1,32 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import fetchLogin from "../auth/auth-thunks";
 
 interface AuthState {
-  loggedIn: boolean;
+  isLoggedIn: boolean;
+  error: string;
 }
 
 const initialState: AuthState = {
-  loggedIn: false,
+  isLoggedIn: false,
+  error: "",
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    signOut(state) {
-      state.loggedIn = false;
+    loggedIn(state) {
+      state.isLoggedIn = true;
+      state.error = "";
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(fetchLogin.fulfilled, (state, action) => {
-      state.loggedIn = action.payload;
-    });
+    signedOut(state) {
+      state.isLoggedIn = false;
+    },
+    errorOccured(state, action) {
+      state.error = action.payload;
+    },
   },
 });
 
-export const { signOut } = authSlice.actions;
+export const { loggedIn, signedOut, errorOccured } = authSlice.actions;
 export default authSlice.reducer;

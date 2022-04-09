@@ -39,6 +39,8 @@ body {
   font-family: "Roboto", "Arial", sans-serif;
   font-weight: 400;
 
+  width: 100%;
+
   background-color: $color-background;
   overflow: hidden;
 }
@@ -85,6 +87,10 @@ a {
 
   &:disabled {
     @include disable-standard;
+  }
+
+  &:active {
+    @include active-standard;
   }
 }
 

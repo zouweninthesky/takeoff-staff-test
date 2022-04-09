@@ -20,9 +20,6 @@
   }
 
   &__button {
-  }
-
-  &__button {
     position: absolute;
 
     color: inherit;
@@ -40,6 +37,10 @@
     &:hover,
     &:focus {
       color: $color-neutrals-dark;
+    }
+
+    &:active {
+      @include active-standard;
     }
 
     &--logout {

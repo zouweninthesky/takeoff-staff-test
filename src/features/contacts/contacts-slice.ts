@@ -18,9 +18,6 @@ const contactsSlice = createSlice({
   name: "contacts",
   initialState,
   reducers: {
-    // contactsLoaded(state, action: PayloadAction<ContactInterface[]>) {
-    //   state.contacts = action.payload;
-    // },
     contactCreated(state, action: PayloadAction<ContactInterface>) {
       state.contacts.push(action.payload);
     },
@@ -58,7 +55,6 @@ const contactsSlice = createSlice({
 });
 
 export const {
-  // contactsLoaded,
   contactCreated,
   contactDeleted,
   contactChosen,

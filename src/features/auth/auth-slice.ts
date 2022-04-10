@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import fetchLogin from "../auth/auth-thunks";
 
 interface AuthState {
   isLoggedIn: boolean;
